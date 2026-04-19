@@ -37,7 +37,7 @@ class Calculator:
         # Button frame
         button_frame = tk.Frame(self.window)
         button_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
-        
+
         # Button layout
         buttons = [
             ['C', '⌫', '√', '/'],
@@ -46,23 +46,22 @@ class Calculator:
             ['1', '2', '3', '+'],
             ['0', '.', '=', '=']
         ]
-        
+
         for i, row in enumerate(buttons):
             for j, text in enumerate(row):
                 if text == '=':
-                    if j == 2:  # First equals button
+                    if j == 2:
                         continue
-                    else:  # Make equals button span 2 columns
-                        btn = tk.Button(
-                            button_frame,
-                            text=text,
-                            font=("Arial", 14),
-                            command=lambda: self.calculate(),
-                            bg="#ff9500",
-                            fg="white",
-                            activebackground="#ffad33"
-                        )
-                        btn.grid(row=i, column=j-1, columnspan=2, sticky="nsew", padx=2, pady=2)
+                    btn = tk.Button(
+                        button_frame,
+                        text=text,
+                        font=("Arial", 14),
+                        command=lambda: self.calculate(),
+                        bg="#ff9500",
+                        fg="white",
+                        activebackground="#ffad33"
+                    )
+                    btn.grid(row=i, column=j-1, columnspan=2, sticky="nsew", padx=2, pady=2)
                 else:
                     # Determine button color
                     if text in ['C', '⌫', '√']:
@@ -74,7 +73,7 @@ class Calculator:
                     else:
                         bg_color = "#333333"
                         fg_color = "white"
-                    
+
                     btn = tk.Button(
                         button_frame,
                         text=text,
@@ -85,7 +84,7 @@ class Calculator:
                         activebackground="#555555"
                     )
                     btn.grid(row=i, column=j, sticky="nsew", padx=2, pady=2)
-        
+
         # Configure grid weights for responsive design
         for i in range(5):
             button_frame.grid_rowconfigure(i, weight=1)
